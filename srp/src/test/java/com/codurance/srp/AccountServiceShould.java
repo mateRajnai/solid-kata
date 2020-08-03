@@ -1,6 +1,12 @@
 package com.codurance.srp;
 
 
+import com.codurance.srp.logger.Console;
+import com.codurance.srp.logger.TransactionLogger;
+import com.codurance.srp.model.Transaction;
+import com.codurance.srp.repository.TransactionRepository;
+import com.codurance.srp.service.AccountService;
+import com.codurance.srp.service.Clock;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -24,9 +30,9 @@ public class AccountServiceShould {
     private static final int NEGATIVE_AMOUNT = -POSITIVE_AMOUNT;
     private static final LocalDate TODAY = LocalDate.of(2017, 9, 6);
     private static final List<Transaction> TRANSACTIONS = Arrays.asList(
-        new Transaction(LocalDate.of(2014, 4, 1), 1000),
-        new Transaction(LocalDate.of(2014, 4, 2), -100),
-        new Transaction(LocalDate.of(2014, 4, 10), 500)
+            new Transaction(LocalDate.of(2014, 4, 1), 1000),
+            new Transaction(LocalDate.of(2014, 4, 2), -100),
+            new Transaction(LocalDate.of(2014, 4, 10), 500)
     );
 
     @Mock
@@ -38,11 +44,15 @@ public class AccountServiceShould {
     @Mock
     private Console console;
 
+
+    private TransactionLogger transactionLogger;
+
     private AccountService accountService;
 
     @Before
     public void setUp() {
-        accountService = new AccountService(transactionRepository, clock, console);
+        transactionLogger = new TransactionLogger(console);
+        accountService = new AccountService(transactionRepository, clock, transactionLogger);
         given(clock.today()).willReturn(TODAY);
     }
 

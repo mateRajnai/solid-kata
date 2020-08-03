@@ -1,4 +1,4 @@
-package com.codurance.srp;
+package com.codurance.srp.model;
 
 import java.time.LocalDate;
 
@@ -6,7 +6,7 @@ public class Transaction {
     private LocalDate date;
     private int amount;
 
-    Transaction(LocalDate date, int amount) {
+    public Transaction(LocalDate date, int amount) {
         this.date = date;
         this.amount = amount;
     }

@@ -1,4 +1,4 @@
-package com.codurance.srp;
+package com.codurance.srp.service;
 
 import java.time.LocalDate;
 

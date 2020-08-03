@@ -1,4 +1,6 @@
-package com.codurance.srp;
+package com.codurance.srp.repository;
+
+import com.codurance.srp.model.Transaction;
 
 import java.util.List;
 
